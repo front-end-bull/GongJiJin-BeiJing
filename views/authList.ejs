@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>保险代理人资格验证</title>
+
+    <link href="/static/css/common/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/infoManage.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/animate.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/static/js/common/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/common/layer/layer.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/static/js/My97DatePicker/WdatePicker.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row animated rubberBand">
+             <h1>待验证列表</h1>
+        </div>
+
+        
+        <div class="row animated bounceInUp">
+            <div class="box">
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-xs-8"> <h3 class="box-title" style="font-size:23px;">代理人信息</h3></div>
+                            <div class="col-xs-2" style="position:relative;"></div>
+                        </div>
+                     
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding" style="font-size:20px;">
+                      <table class="table table-hover">
+                        
+                        
+                      </table>
+                    </div><!-- /.box-body -->
+                  </div><!-- /.box -->
+        </div>
+
+         <div class="row">
+                <div class="col-xs-2">
+                    <button class="btn btn-primary" type="button" style="font-weight:bold;">
+                      Total <span class="badge"></span>
+                    </button>
+                </div>
+                <div class="col-xs-8">
+                    <ul class="pagination pull-right"  style="margin:0;font-size:17px;">
+                       
+                    </ul>
+                </div>
+
+        </div>
+
+       
+    </div>
+    
+    <script type="text/javascript">
+        
+        $(function(){ 
+            load()
+        })
+
+        // 工具函数－－比较时间大小
+        function compareTime(a, b) {
+            var arr = a.split("-")
+            var starttime = new Date(arr[0], arr[1], arr[2])
+            var starttimes = starttime.getTime()
+            var arrs = b.split("-")
+            var lktime = new Date(arrs[0], arrs[1], arrs[2])
+            var lktimes = lktime.getTime()
+            if (starttimes >= lktimes) {
+                // alert('开始时间大于离开时间，请检查')  
+                layer.tips('开始时间大于离开时间，请检查!', '#startTime')
+                return
+            }
+        }
+        // 工具函数－－时间戳转yyyy-mm-dd hh:mm:ss
+        function format(now){
+              var   year=now.getYear()+1900    
+              var   month=now.getMonth()+1    
+              var   date=now.getDate()    
+              var   hour=now.getHours()    
+              var   minute=now.getMinutes()    
+              var   second=now.getSeconds()    
+              return   year+"-"+month+"-"+date    
+        }   
+
+        function load(queryData){
+           
+
+            $.ajax({
+                data: queryData,
+                type: "post",
+                url: 'http://182.254.212.33:3000/list_wait_auth_list',
+                dataType: 'json',
+                cache: false,
+                timeout: 5000,
+                success: function(data){
+                   var list = data.res
+                   var length = list.length
+
+                   var html = '<tr><th style="width:5%;">ID</th><th style="width:15%;">姓名</th><th style="width:30%;">身份证号</th><th style="width:25%">推荐人ID</th><th style="width:20%">操作</th></tr>'
+
+                   for(var i = 0;i<length;i++){
+                     var info = list[i]
+                     html+='<tr><td>'+info.id+'</td><td>'+info.username+'</td><td>'+info.shengfenzheng+'</td><td>'+info.promotecode+'</td><td><button class="btn btn-success" onclick="judge('+info.id+',2)">通过</button><button class="btn btn-default" onclick="judge('+info.id+',3)">不通过</button></td></tr>'
+                   }
+
+                   $('table').html(html)
+                   $('.badge').html(length)
+                }
+                ,
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert(textStatus + " " + errorThrown);  
+                }
+            });
+        }
+
+        function judge(id,flag){
+
+            console.log("id: "+id)
+            console.log("flag: "+flag)
+            var optData={
+                userid:id,
+                status:flag
+            }
+
+           $.ajax({
+                data: optData,
+                type: "get",
+                url: 'http://182.254.212.33:3000/confirm_auth',
+                dataType: 'json',
+                cache: false,
+                timeout: 5000,
+                success: function(data){
+                    console.log(data)
+                     layer.msg('操作成功!')
+                     load()
+                }
+                ,
+                error: function(jqXHR, textStatus, errorThrown){
+                    // alert('error ' + textStatus + " " + errorThrown)
+                     layer.msg('操作失败!')
+                }
+            })
+        }
+
+        
+    </script>
+
+</body>
+
+</html>

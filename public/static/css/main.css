@@ -1,0 +1,712 @@
+/*
+	通用工具类  
+	made by fengliang 
+*/
+	.no-margin{
+		margin:0;
+	}
+	.no-scroll {
+		height: 100%;
+		overflow-y: hidden;
+	}
+
+
+/*
+	section整体设置
+*/
+	section{
+		margin-bottom: 10px;
+	}
+
+
+/*
+	hearder模块 
+*/
+	header{
+		background-repeat: no-repeat;
+		background-size:cover;
+		background-position: center;
+		/*transition:all 2s;*/
+		height: 188px;
+	}
+	
+	header>div>div{
+		width: 75%; 
+		border-radius: 3px;
+		position:relative;
+		top:173px;
+	}
+	
+
+
+
+/*
+	概况模块 
+*/
+	.summary{
+		margin: 0;
+		padding-top: 30px;
+		background-color:#32b16c;
+		padding-bottom:20px;
+	}
+	
+	.summary>.head{
+		color: #fbfdfc;
+		border-bottom: 1px solid #7ecea2;
+	}
+
+	.summary>.head>.line{
+		position: relative;
+		top:14px;
+		border-left: 1px solid #7ecea2;
+		height: 22px;
+		padding: 0;
+	}
+
+	.summary>.head>div{
+		float: left;
+		font-size: 18px;
+		line-height: 1.4;
+		padding-bottom: 16px;
+		padding-left: 10px;
+	}
+
+	
+
+	.summary>.head>div>div{
+		font-size:12px;
+	}
+
+	.summary>.head>div:nth-child(1){
+		width:11%;
+		/*padding-left: 11px;*/
+	}
+	
+	.summary>.head>div:nth-child(2){
+		width:13%;
+		padding-left: 0;
+	}
+
+	.summary>.head>div:nth-child(3){
+		width:20%;
+	}
+	/*4*/
+	.summary>.head>div:nth-child(5){
+		width:20%;
+	}
+	/*6*/
+	.summary>.head>div:nth-child(7){
+		width:18%;
+	}
+	/*8*/
+	.summary>.head>div:nth-child(9){
+		width:17%;
+	}
+	
+	.summary>.body{
+		color: #dbefe3;
+		/*color: #eef7f1;*/
+	}
+
+	.summary>.body>.block{
+		border-bottom: 1px solid #7ecea3;
+		padding-top:6px;
+		padding-bottom: 6px;
+	}
+
+	.summary>.body>.block>div{
+		float: left;
+		font-size:12px;
+		padding-left:10px;
+		line-height: 1.5;
+	}
+
+	.summary>.body>.block>div:nth-child(1){
+		width: 24%;
+	}
+
+	.summary>.body>.block>div:nth-child(2){
+		width: 20%;
+	}
+	.summary>.body>.block>div:nth-child(3){
+		width:21%;
+		padding-left: 11px;
+	}
+	.summary>.body>.block>div:nth-child(4){
+		width:17%;
+		padding-left:9px;
+	}
+	.summary>.body>.block>div:nth-child(5){
+		width:17%;
+		padding-left:13px;
+	}
+
+
+	@media (max-width:413px){
+		.summary>.head>div{
+			font-size: 15px;
+		}
+		.summary>.head>.line{
+			top:9px;
+		}
+	}
+	
+	@media (max-width: 320px){
+		.summary>.head>div{
+			font-size: 15px;
+			padding-left: 5px;
+			transform:scale(0.9);
+			-webkit-transform-origin-x: 0;
+		}
+		.summary>.body>.block>div{
+			padding-left:5px;
+			transform:scale(0.9);
+			-webkit-transform-origin-x: 0;
+		}
+		.summary>.body>.block>div:nth-child(3){
+			padding-left: 7px;
+		}
+		.summary>.body>.block>div:nth-child(4){
+			padding-left:4px;
+		}
+		.summary>.body>.block>div:nth-child(5){
+			padding-left:8px;
+		}
+		
+	}
+
+/*
+	导航条小模块
+*/
+	.section-header{
+		/*background-color:#eee;*/
+		height: 34px;
+		position: relative;
+		margin-bottom: 5px;
+		margin-top:2px;
+	}
+	
+	.section-header>.line{
+		position: absolute;
+		top:16px;
+		width: 100%;
+		border: 1px solid #fe624f;
+		z-index: 1;
+	}
+	
+	.section-header>.title{
+		position: relative;
+		display: inline-block;
+		float: left;
+		left: 9px;
+		background-color: white;
+		font-size:14px;
+		/*padding:0 2px 0 20px;*/
+		padding-left: 12px;
+		padding-right: 0;
+		color:#fe624f;
+		line-height:34px;
+		z-index: 999;
+	}
+
+
+	.section-header>.title:before{
+		content: "";
+		display: block;
+		position: absolute;
+		top: 14px;
+		left: 0;
+		width: 6px;
+		height: 6px;
+		background-color: #fe624f;
+		border-radius: 3px;
+	}
+	
+	.section-header>.title>.end{
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		border-radius: 3px;
+		background-color:  #fe624f;
+		position: relative;
+		left:2px;
+		bottom: 2px;
+
+	}
+	
+
+	.section-header>a{
+		position: relative;
+		margin-right: 11px;
+		background-color: #fe624f;
+		color: white;
+		display: inline-block;
+		float: right;
+		height: 26px;
+		top:4px;
+		font-size: 10px;
+		border-radius: 2px;
+		/*padding: 6px;*/
+		z-index: 999;
+		text-align: center;
+		width: 68px;
+		line-height: 26px;
+		text-decoration: none;
+	}
+
+	/*.section-header>.middle{
+		font-size:13px;
+		padding:0 5px;
+		color:#fe624f;
+		line-height:34px;
+	}*/
+
+	.section-header .lnr{
+		width: 30px;
+		height: 30px;
+		position: relative;
+		right: 5px;
+		bottom: 6px;
+		margin-right: 5px;
+	}
+
+	.section-header h2{
+		font-size:13px;
+		padding:0 5px;
+		color:#55abe9;
+		display:inline-block;
+		line-height:34px;
+	}
+
+	.section-header a.section-details{
+		padding:0 25px;
+		color:#f1f9fe;
+		display:inline-block;
+		font-size:11px;
+		line-height:34px;
+		background-color:#7ecef4;
+	}
+
+
+
+/*
+	意外伤害模块
+*/
+	.accident>.block{
+		width: 47%;
+		float: left;
+		margin-top: 10px;
+		margin-bottom: 15px;
+		padding-left: 10px;
+	}
+
+	.accident>.block>.left{
+		width: 20%;
+		float: left;
+		padding-top: 10px;
+	}
+
+	.accident>.block>.left>img{
+		width: 30px;
+	}
+
+	.accident>.block>.right{
+		width: 80%;
+		float: left;
+		padding-left: 6px;
+	}
+
+	.accident>.block>.right>dt{
+		font-size: 13px;
+	}
+
+	.accident>.block>.right>dd{
+		font-size: 12px;
+		color: #a8a8a8;
+		line-height: 1.5;
+	}
+
+
+
+
+
+/*
+	轻症重疾模块
+*/
+	.guarantee>.long-block{
+		width: 100%;
+		margin-top: 10px;
+		margin-bottom: 15px;
+		padding-left: 10px;
+		float: left;
+	}
+
+	.guarantee>.long-block>.left{
+		width: 10%;
+		float: left;
+		padding-top: 5px;
+	}
+
+	.guarantee>.long-block>.left>img{
+		width: 30px;
+	}
+
+	.guarantee>.long-block>.right{
+		width: 90%;
+		float: left;
+		padding-left: 6px;
+		padding-right: 20px;
+	}
+
+	.guarantee>.long-block>.right>dt{
+		font-size:14px;
+	}
+
+	.guarantee>.long-block>.right>dd{
+		font-size: 13px;
+		color: #a8a8a8;
+		line-height: 1.5;
+	}
+
+
+
+
+/*
+	联系代理人模块
+*/
+	.contact{
+		/*border-top: 1px solid #159be1;*/
+		margin-bottom: 0;
+	}
+
+	.contact>.left{
+		/*border-top:1px solid #a5bdc9;*/
+		width: 20%;
+		float: left;
+		padding-left: 12px;
+		padding-top: 18px;
+		padding-bottom: 15px;
+
+	}
+
+	.contact>.left>img{
+		width: 72px;
+	}
+
+	.contact>.right{
+		/*border-top:1px solid #a5bdc9;*/
+		width: 80%;
+		float: left;
+		/*padding-left:14px;*/
+		padding-top: 14px;
+		padding-left:18px;
+		padding-right:10px;
+	}
+
+	.contact>.right>dt{
+		font-size:20px;
+		/*color: #e55c5c;*/
+		color: #ff9402;
+		line-height: 1.6;
+	}
+
+	.contact>.right>dt>img{
+		width: 26px;
+		height: 15px;
+	}
+
+	.contact>.right>dd{
+		margin-top: 5px;
+		font-size:13px;
+		text-indent: 13px;
+		/*color: #e98585;*/
+		color: black;
+		line-height: 1.4;
+	}
+
+	.contact>.right>.left{
+		width: 15px;
+		/*position: relative;*/
+		float: left;
+		/*transform:rotate(12deg);*/
+	}
+
+	.contact>.right>.right{
+		width: 15px;
+		float: right;
+		position: relative;
+		top:-13px;
+	}
+
+	.contact>.buttons{
+		float: left;
+		width: 100%;
+		margin-top: 13px;
+		background-color: #ff9402;
+		/*color: black;*/
+	}
+	.contact>.buttons>a{
+		color: black;
+		line-height: 45px;
+		/*font-size: 15px;*/
+		font-weight: 900;
+	}
+
+	.contact>.buttons>a>.phone{
+		width: 100%;
+		text-align: center;
+		/*text-decoration: underline;*/
+	}
+
+	.contact>.buttons>a>.phone>img{
+		width: 22px;
+		margin-right: 10px;
+	}
+
+	.contact>.buttons>a>.phone>span{
+		border-bottom: 2px solid black;
+	}
+	
+	@media(max-width: 320px){
+		.contact>.left>img{
+			transform:scale(0.9);
+		}
+		.contact>.right{
+			transform:scale(0.9);
+		}
+		.contact>.buttons{
+			margin-top: 0;
+
+		}
+		.contact>.buttons>a{
+			line-height: 35px;
+		}
+		.contact>.buttons>a>.phone{
+			transform:scale(0.9);
+		}
+	}
+	/*.contact>.buttons .phone{
+		float: left;
+		width: 50%;
+		text-align: center;
+		background-color: #d6d6d6;
+		color: white;
+		font-size:17px;
+		line-height: 50px;
+	}
+
+	.contact>.buttons .phone>img{
+		width: 20px;
+	}
+
+	.contact>.buttons .weChart{
+		float: left;
+		width: 50%;
+		text-align: center;
+		background-color: #ff9402;
+		color: white;
+		font-size:17px;
+		line-height: 50px;
+	}
+
+	.contact>.buttons .weChart>img{
+		width: 20px;
+	}*/
+
+
+
+
+
+
+
+/*
+	风险提示模块
+*/
+	section.notice{
+		background-color:#ddd;
+		margin-top:20px;
+		padding-bottom:10px;
+		color:#adadac;
+		padding-top:5px;
+	}
+
+	section.notice>h1{
+		text-align:center;
+	}
+
+	section.notice>p{
+		line-height:1.6;
+		font-size:12px;
+		margin:10px 0 0 0;
+		text-indent:20px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+
+
+/*
+	寿险时间轴
+*/
+	.timeline{
+
+	}
+
+	.timeline>.long-block{
+		width: 100%;
+		/*margin-top: 10px;*/
+		/*margin-bottom: 15px;*/
+		padding-left: 10px;
+		float: left;
+		height: 67px;
+	}
+
+
+	.timeline>.long-block:nth-child(3) {
+		/*display: none;*/
+		/*background-color: black;*/
+		margin-top: 20px;
+	}
+
+	.timeline>.long-block>.left{
+		width: 10%;
+		float: left;
+		color: #ff7d6d;
+		font-size:10px;
+		padding-top: 5px;
+		text-align: right;
+		/*border-right: 1px solid #13b5b1;*/
+	}
+
+	.timeline>div>img{
+		width: 30px;
+		position: relative;
+	}
+
+	.timeline>div.young{
+		width: 10%;
+		position: relative;
+		text-align: right;
+		/*padding-left:20px;*/
+		top: 20px;
+		left:17px;
+	}
+
+	.timeline>div.young>img.young{
+		/*top: 20px;*/
+	}
+
+	.timeline>div.elder{
+		position: relative;
+		width: 10%;
+		text-align: right;
+		bottom: 35px;
+		left: 17px;
+	}
+	.timeline>div.elder>img.elder{
+	}
+
+	.timeline>.long-block>.left>.circle{
+		width: 10px;
+		height: 10px;
+		border-radius: 10px;
+		background-color: #13b5b1;
+		display: inline-block;
+		margin-left: 3px;
+	}
+
+	.timeline>.long-block>.left>.circle>.line{
+		width: 0;
+		border-left: 1px solid #13b5b1;
+		height: 57px;
+		position: relative;
+		left:4px;
+		top:10px;
+	}
+
+	.timeline>div:nth-last-child(2)>.left>.circle>.line{
+		display: none;
+	}
+
+	.timeline>.long-block>.right{
+		width: 90%;
+		float: left;
+		padding-left: 14px;
+		padding-right: 20px;
+		/*border-left: 1px solid #13b5b1;*/
+		/*padding-bottom:20px;*/
+	}
+
+	.timeline>.long-block>.right>dt{
+		font-size:14px;
+	}
+
+	.timeline>.long-block>.right>dd{
+		font-size: 13px;
+		color: #a8a8a8;
+		line-height: 1.5;
+		padding-right: 5px;
+	}
+
+
+
+
+/*
+	保单贷款模块
+*/
+	.loan{
+		margin-bottom: 0;
+	}
+
+	.loan>img{
+		width: 100%;
+		height: 100%;
+		position: relative;
+		top: 15px;
+	}
+	/*.loan>.long-block{
+		width: 100%;
+		margin-top: 10px;
+		margin-bottom: 15px;
+		padding-left: 10px;
+		float: left;
+	}
+
+	.loan>.long-block>.left{
+		width: 10%;
+		float: left;
+		padding-top: 10px;
+	}
+
+	.loan>.long-block>.left>img{
+		width: 30px;
+	}
+
+	.loan>.long-block>.right{
+		width: 90%;
+		float: left;
+		padding-left: 6px;
+		padding-right: 20px;
+	}
+
+	.loan>.long-block>.right>dt{
+		font-size:14px;
+	}
+
+	.loan>.long-block>.right>dd{
+		font-size: 13px;
+		color: #a8a8a8;
+		line-height: 1.5;
+	}*/
+
+
+
+
+/*
+	红利模块
+*/
+	.bonus>img{
+		width: 100%;
+		height: 100%;
+	}
+

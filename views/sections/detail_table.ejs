@@ -1,0 +1,48 @@
+<section class="summary" >
+  <div class="head clearfix">
+    <div ><div>性别</div><%= sex %></div>
+    <div ><div>年龄</div><%= age %></div>
+    <div ><div>保额</div><%= totalbaoe %></div>
+    <div class="line"></div>
+    <div ><div>保费</div><%= totalbaofei %></div>
+     <div class="line"></div>
+    <div ><div>缴费年限</div><%= duration %></div>
+     <div class="line"></div>
+    <div ><div>保障期间</div><%= baozhangqijian %></div>
+  </div>
+  <div class="body">
+    <% _.each(fujia, function(r) { %>
+      <div class="block clearfix">
+        <div><%= r.title %></div>
+        <div><%= r.totalbaoe %></div>
+        <div><%= r.totalbaofei %></div>
+        <div><%= r.duration %></div>
+        <div><%= r.baozhangqijian %></div>
+       </div> 
+    <% }); %>
+  </div>
+
+   <!--  <table class='table'>
+      <thead>
+        <tr>
+          <td><small>性别</small><br/><%= sex %></td>
+          <td><small>年龄</small><br/><%= age %></td>
+          <td><small>保额</small><br/><%= totalbaoe %></td>
+          <td><small>保费</small><br/><%= totalbaofei %></td>
+          <td><small>缴费年限</small><br/><%= duration %></td>
+          <td><small>保障期间</small><br/><%= baozhangqijian %></td>
+        </tr>
+      </thead>
+      <tbody >
+         <% _.each(fujia, function(r) { %>
+            <tr>
+              <td colspan="2" style="max-width:100px;"><%= r.title %></td>
+              <td><%= r.totalbaoe %></td>
+              <td><%= r.totalbaofei %></td>
+              <td><%= r.duration %></td>
+              <td><%= r.baozhangqijian %></td>
+            </tr>
+         <% }); %>
+      </tbody>
+    </table> -->
+</section>

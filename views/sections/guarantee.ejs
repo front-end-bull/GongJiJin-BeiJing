@@ -1,0 +1,15 @@
+<!-- 重疾保障模块 -->
+<section class="clearfix guarantee">
+	<%- include('_section_header', {section_name: title,a_id:type,Ttitle:tiaokuan_title,content:tiaokuan_content,url:tiaokuan_left_click,need_tiaokuan:true})%>
+	<% _.each(assures, function(b) { %>
+		<div class="long-block clearfix">
+			<div class="left">
+				<img src='<%=b.logourl %>'>
+			</div>
+			<div class="right">
+				<dt><%= b.title %></dt>
+				<dd><%- b.text %></dd>
+			</div>
+		</div>
+	<% }); %> 
+</section>

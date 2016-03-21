@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>资讯管理</title>
+
+    <link href="/static/css/common/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/infoManage.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/animate.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/static/js/common/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/common/layer/layer.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/static/js/My97DatePicker/WdatePicker.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row animated rubberBand">
+             <h1>新闻资讯列表</h1>
+        </div>
+
+        <div class="row animated bounceInDown">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="font-size:23px;">查询条件</h3>
+                    <div class="box-tools">
+                    </div>  
+                </div><!-- /.box-header -->
+
+                <div class="box-body" style="font-size:20px;">
+                  <form role="form">
+                    <!-- select -->
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-xs-1"></div>
+
+                        <div class="col-xs-3">
+                             <div class="form-group">
+                                <label>发布开始时间</label>
+                                <input type="text" class="form-control" id="startTime"
+                                style="font-size:15px" onclick="WdatePicker()">
+                            </div>
+                        </div>
+                       
+                        <div class="col-xs-1"></div>
+
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                               <label>发布结束时间</label>
+                              <input type="text" class="form-control" onclick="WdatePicker()" id="endTime"
+                                style="font-size:15px" >
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label>文章标题</label>
+                                <input type="text" class="form-control"
+                                style="font-size:15px" >
+                            </div>
+                        </div>
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label>类型</label>
+                                <select class="form-control" style="font-size:15px;" name="" id="type">
+                                    <option value="0">全部</option>
+                                    <option value="1">客户</option>
+                                    <option value="2">自己</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <a class="btn btn-success query" href="javascript:void(0)" onclick="query()">查询</a>
+                        </div>
+                    </div>
+                  </form>
+                </div><!-- /.box-body -->
+            </div>
+        </div>
+        
+        <div class="row animated bounceInUp">
+            <div class="box">
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-xs-8"> <h3 class="box-title" style="font-size:23px;">资讯列表</h3></div>
+                            <div class="col-xs-2" style="position:relative;"><a href="/addInfo" class="btn btn-warning add">增加</a></div>
+                        </div>
+                     
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding" style="font-size:20px;">
+                      <table class="table table-hover">
+                      </table>
+                    </div><!-- /.box-body -->
+                  </div><!-- /.box -->
+        </div>
+
+         <div class="row">
+                <div class="col-xs-2">
+                    <button class="btn btn-primary" type="button" style="font-weight:bold;">
+                      Total <span class="badge"></span>
+                    </button>
+                </div>
+                <div class="col-xs-8">
+                    <ul class="pagination pull-right"  style="margin:0;font-size:17px;">
+                       
+                    </ul>
+                </div>
+
+            </div>
+
+       
+    </div>
+    
+    <script type="text/javascript">
+        var startNum = 0
+        var pageSize = 10
+        var selectedType = ''
+        var currentPage = 1
+        var totalPageNum = 0
+
+        $(function(){ 
+             var queryData = {
+                offset:startNum,
+                num:pageSize
+            }
+            load(queryData)
+        })
+
+        function query(){
+            var startTime = $('#startTime').val()
+            var endTime = $('#endTime').val()
+            var title = $('#title').val()
+
+            compareTime(startTime,endTime)
+        }
+        // 工具函数－－比较时间大小
+        function compareTime(a, b) {
+            var arr = a.split("-")
+            var starttime = new Date(arr[0], arr[1], arr[2])
+            var starttimes = starttime.getTime()
+            var arrs = b.split("-")
+            var lktime = new Date(arrs[0], arrs[1], arrs[2])
+            var lktimes = lktime.getTime()
+            if (starttimes >= lktimes) {
+                // alert('开始时间大于离开时间，请检查')  
+                layer.tips('开始时间大于离开时间，请检查!', '#startTime')
+                return
+            }
+        }
+        // 工具函数－－时间戳转yyyy-mm-dd hh:mm:ss
+        function format(now){
+              var   year=now.getYear()+1900;     
+              var   month=now.getMonth()+1;     
+              var   date=now.getDate();     
+              var   hour=now.getHours();     
+              var   minute=now.getMinutes();     
+              var   second=now.getSeconds();     
+              return   year+"-"+month+"-"+date;     
+        }   
+
+        function load(queryData){
+           
+
+            $.ajax({
+                data: queryData,
+                type: "get",
+                url: 'http://182.254.212.33:3000/query_news',
+                dataType: 'json',
+                cache: false,
+                timeout: 5000,
+                success: function(data){
+                    var news = data.news
+                    var html = '<tr><th style="width:70px;">ID</th><th>Title</th><th style="width:100px;">类型</th><th style="width:150px">发布日期</th><th style="width:60px">操作</th></tr>'
+
+                    for(var i=0;i<news.length;i++){
+                        var n = news[i]
+
+                        if(n.type==1){
+                            n.type='客户'
+                        }else if(n.type==2){
+                            n.type='自己'
+                        }
+
+                        n.createtime = format(new Date(n.createtime*1000))
+
+                        html+=
+                            '<tr>'
+                            +'<th style="padding-left:5px;">'+n.id+'</th>'
+                            +'<th>'
+                            +'    <a href="javascript:void(0)" style="text-decoration:none;">'+n.title+'</a>'
+                            +'</th>'
+                            +'<th>'+n.type+'</th>'
+                            +'<th>'+n.createtime+'</th>'
+                            +'<th><a onclick="del('+n.id+')"  href="javascript:void(0)" style="color:red;text-decoration:none;">删除</a></th>'
+                            +'</tr>';
+                    }
+                    $('table').html(html)
+                    $('.badge').html(data.count)
+
+
+
+
+                    var pageHtml = 
+                        '<li >'
+                        +'    <a href="javascript:void(0)" id="firstPage">首页</a>'
+                        +'</li>'
+                        +'<li >'
+                        +'    <a href="javascript:void(0);" id="prePage">上一页</a>'
+                        +'</li>'
+                        +'<li id="nextPageli">'
+                        +'    <a href="javascript:void(0);" id="nextPage">下一页</a>'
+                        +'</li>'
+                        +'<li >'
+                        +'    <a href="javascript:void(0)" id="lastPage">末页</a>'
+                        +'</li>'
+
+                    //分页配置
+
+                    $('.pagination').html(pageHtml)
+
+                    totalPageNum = Math.floor(data.count/pageSize)
+                    if(data.count%pageSize!=0){
+                        totalPageNum +=1
+                    }
+                    
+                    if(totalPageNum==1){
+                        $('.pagination').hide()
+                    }else if(totalPageNum){
+                        $('.pagination').show()
+                            var html =''
+                        for(var i=1;i<totalPageNum+1;i++){
+                            if(currentPage==i){
+                                html+='<li ><a href="javascript:void(0);" style="background-color:yellow" onclick="gotoPage('+i+')">'+i+'</a></li>'
+                            }
+                            else{
+                                html+='<li ><a href="javascript:void(0);" onclick="gotoPage('+i+')">'+i+'</a></li>'
+                            }
+                        }
+                        $(html).insertBefore('#nextPageli')
+                    }
+
+                    //判断当前页码
+                    $('#prePage').bind('click',function(){
+                        if(currentPage==1){
+                        // event.preventdefault()
+                        layer.msg('已到首页');
+                        return
+                        }
+                        prePage()
+                    })
+                    $('#nextPage').bind('click',function(){
+                        if(totalPageNum==currentPage){
+                        layer.msg('已到末页');
+                        // event.preventdefault()
+                        return 
+                        }
+                        nextPage()
+                    })
+
+                    $('#firstPage').bind('click',firstPage
+                    )
+
+                    $('#lastPage').bind('click',lastPage
+                    )
+                }
+                ,
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert(textStatus + " " + errorThrown);  
+                }
+            });
+        }
+
+
+        function del(id){
+            var delData={
+                id:id
+            }
+
+
+           $.ajax({
+                data: delData,
+                type: "post",
+                url: 'http://182.254.212.33:3000/del_news',
+                dataType: 'json',
+                cache: false,
+                timeout: 5000,
+                success: function(data){
+                    // console.log(data)
+                     layer.msg('删除成功!');
+                }
+                ,
+                error: function(jqXHR, textStatus, errorThrown){
+                    // alert('error ' + textStatus + " " + errorThrown)
+                     layer.msg('删除失败!');
+                }
+            })
+
+            var queryData = {
+                offset:startNum,
+                num:pageSize
+            }
+           load(queryData)
+
+        }
+
+
+        function firstPage(){
+            currentPage=1
+            var queryData = {
+                offset:0,
+                num:pageSize
+            }
+            load(queryData)
+        }
+
+        function prePage(){
+            currentPage--
+            startNum -=pageSize
+            var queryData = {
+                offset:startNum,
+                num:pageSize
+            }
+            load(queryData)
+        }
+
+        function nextPage(){
+            currentPage++
+            startNum +=pageSize
+            var queryData = {
+                offset:startNum,
+                num:pageSize
+            }
+            load(queryData)
+        }
+
+        function lastPage(){
+            
+            startNum = pageSize*(totalPageNum-1)
+            currentPage = totalPageNum
+            var queryData = {
+                offset:startNum,
+                num:pageSize
+            }
+            load(queryData)
+        }
+
+        function gotoPage(num){
+            // alert(num)
+            currentPage = num
+            startNum = pageSize*(num-1)
+            var queryData = {
+                offset:startNum,
+                num:pageSize
+            }
+            console.log(queryData)
+            load(queryData)
+            
+        }
+    </script>
+
+</body>
+
+</html>

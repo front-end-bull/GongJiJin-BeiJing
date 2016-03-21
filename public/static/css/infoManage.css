@@ -1,0 +1,72 @@
+@font-face{
+      font-family: 'Tan';
+      src:url("/static/fonts/Tan.ttf");
+}
+
+.form-control{
+	height: 34px;
+}
+
+.btn{
+	padding: 3px 20px;
+}
+
+.query{
+	margin-top: 40px;
+}
+
+body{
+	font-family: 'Tan' !important;
+	color: #87968e;
+	background-color: #ecf0f5;
+}
+
+.container{
+	margin-top: 20px;
+}
+
+h1{
+	text-align: center;
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+
+.add{
+	position: absolute;
+	left:22px;
+	top:-7px;
+	padding:1px 20px;
+	/*top:-23px;*/
+	/*float: right;*/
+}
+
+h3{
+	line-height: 1;
+}
+
+.box{
+	/*position: relative;*/
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    /*padding-bottom: 30px;*/
+}
+
+.box-warning{
+	border-top-color: #f39c12;
+}
+
+.box-header{
+	color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+
+.with-border{
+	border-bottom: 1px solid #f4f4f4;
+}
+

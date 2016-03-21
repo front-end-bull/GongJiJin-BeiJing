@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>账号管理</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	<style>
+		html{
+			font-size: 100px;
+		}
+		 @media screen and (max-device-width:320px){
+            html{
+                font-size: 85.3px;
+            }
+        }
+
+        @media screen and (min-device-width:414px){
+            html{
+                font-size: 110px;
+            }
+        }
+		body{
+			font-size: 0.16rem;
+			background: #eeeeee;
+		}
+		*{	
+			padding: 0;
+			margin: 0;
+			line-height: 1;
+			box-sizing:border-box;
+		}
+
+		.clearfix 
+		{ 
+	      	zoom: 1; 
+	    } 
+	    .clearfix:before, .clearfix:after 
+	    { 
+	      	display: table; 
+	      	line-height: 0; 
+	      	content: ""; 
+	    } 
+	    .clearfix:after 
+	    { 
+	      	clear: both; 
+	    } 
+
+	    .add{
+	    	background: white;
+	    	line-height: 0.45rem;
+	    	margin: 0.22rem 0.16rem;
+	    	font-size: 0.2rem;
+	    	text-align: center;
+	    	border:2px solid #ddd;
+	    	border-radius: 11px;
+	    }
+		
+		.account{
+			background: white;
+			padding-left: 0.16rem;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.account .left{
+			float: left;
+			width: 80%;
+		}
+
+		.account .left .top{
+			margin-top: 0.12rem;
+			font-weight: 500;
+		}
+
+		.account .left .top span{
+			font-size: 0.18rem;
+		}
+
+		.account .left .middle{
+			margin-top: 0.12rem;
+			color: #b0b0b0;
+
+		}
+
+		.account .left .bottom{
+			margin-top: 0.12rem;
+			color: #ffab59;
+			margin-bottom: 0.12rem;
+		}
+		
+		.account .right{
+			float: right;
+			width: 20%;
+			text-align: center;
+			line-height: 0.97rem;
+			color: #b0b0b0;
+		}
+		
+		
+		.buttons{
+			background-color: white;
+		}
+
+		.buttons div{
+			float: left;
+			width: 50%;
+			line-height: 0.3rem;
+			text-align: center;
+			margin-top: 0.08rem;
+			margin-bottom: 0.08rem;
+		}
+
+		.buttons .left{
+			border-right: 1px solid #ddd;
+		}
+
+		.buttons .right{
+			
+		}
+	</style>
+</head>
+<body>
+	<a href="/query_GJJ" style="color:black;text-decoration:none;"><div class="add">+添加公积金账号</div></a>
+	<!-- <div class="account clearfix">
+		<div class="left">
+			<div class="top"><span>彭鹏</span>&nbsp;北京公积金</div>
+			<div class="middle">北京锐美无限科技发展有限公司（T20）</div>
+			<div class="bottom">/月缴&nbsp;3360.00&nbsp;¥</div>
+		</div>
+		<div class="right">></div>
+	</div> -->
+	<div class="buttons clearfix">
+		<div class="left"><i class="icon-user" style="color:#b0b0b0;"></i>&nbsp;主账号</div>
+		<div class="right"><i class="icon-trash" style="color:red;"></i>&nbsp;删除账号</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择公积金中心</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<link rel="stylesheet" href="/static/css/weui.min.css"/>
+	<style>
+		*{
+			box-sizing:border-box;
+		}
+		html{
+			font-size: 100px;
+		}
+		@media screen and (max-device-width:320px){
+	        html{
+	                font-size: 85.3px;
+	            }
+	    }
+
+	    @media screen and (min-device-width:414px){
+	        html{
+	                font-size: 110px;
+	            }
+	    }
+		body{
+			font-size: 0.16rem;
+		}
+
+		.weui_cells_title {
+			margin: 0;
+		    padding-left: 0.15rem;
+		    padding-right: 0.15rem;
+		    color: #888;
+		}
+
+		.weui_cells{
+			font-size: 0.17rem;
+		}
+
+		.weui_cell{
+			/*padding: 0.1rem 0.15rem;*/
+			padding-top: 0.1rem;
+			padding-bottom: 0;
+			padding-left: 0.15rem;
+			padding-right: 0.15rem;
+			/*border-bottom: 1px solid #ddd;*/
+		}
+		p{	
+			padding-bottom: 0.15rem;
+			border-bottom: 1px solid #d9d9d9;
+		}
+		a:last-child p{
+			border: 0;
+		}
+		.search{
+			height: 0.45rem;
+			padding: 0.08rem 0.1rem;
+			background-color: #5d94fb;
+		}
+
+		.search input{
+			height: 0.29rem;
+			width: 100%;
+			border-radius: 4px;
+			padding-left: 0.06rem;
+		}
+
+	</style>
+</head>
+<body>
+	<!-- <div><%=jsessionid%></div> -->
+	<div class="search">
+		<input type="text" placeholder="输入中文、拼音、拼音首写字母来查找">
+	</div>
+
+    <% _.each(content, function(c) { %>
+		<div class="weui_cells_title" style="background-color:#eeeeee;"><%=c.first_letter%></div>
+	        <div class="weui_cells">
+				<% _.each(c.assures,function(a) {  %>
+					<a href="/query_GJJ/<%=a.id%>/<%=jsessionid%>" style="color:black;">
+			            <div class="weui_cell">
+			                <div class="weui_cell_bd weui_cell_primary">
+			                    <p><%=a.label%></p>
+			                </div>
+			                <div class="weui_cell_ft"></div>
+			        	</div>
+		        	</a>
+				<% }); %> 
+	     	</div>
+   		</div>
+	<% }); %> 
+</body>
+</html>

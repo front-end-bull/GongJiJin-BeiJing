@@ -1,0 +1,17 @@
+@media (max-width: 767px) {
+    .jgallery {
+        .jgallery-thumbnails,
+        .zoom-container {
+            .jgallery-btn {
+                &.prev,
+                &.next {
+                    display: none !important;
+                }
+            }
+        }
+        
+        .jgallery-tooltips [tooltip]:hover:after {
+            display: none !important;
+        }
+    }
+}

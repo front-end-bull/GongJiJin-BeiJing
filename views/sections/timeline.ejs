@@ -1,0 +1,24 @@
+<section class="timeline clearfix">
+
+	<%- include('_section_header', {section_name: "年年返还，到期双倍",a_id:type,Ttitle:tiaokuan_title,content:tiaokuan_content,url:tiaokuan_left_click,need_tiaokuan:false}) %>
+	<div class="young">
+		<img src="/static/images/young.png" alt="" class="young">
+	</div>
+	
+
+
+	<% _.each(assures, function(a) { %>
+		<div class="long-block clearfix">
+			<div class="left">
+				<%= a.agetext%><div class="circle"><div class="line"></div></div>
+			</div>
+			<div class="right">
+				<dt><%= a.title%></dt>
+				<dd><%- a.text%></dd>
+			</div>
+		</div>
+	<% }); %> 
+	<div class="elder">
+		<img src="/static/images/elder.png" alt="" class="elder">
+	</div>
+</section>

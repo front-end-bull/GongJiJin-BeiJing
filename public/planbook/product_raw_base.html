@@ -1,0 +1,579 @@
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>常青树保险产品计划书演示</title>
+    <script src="/static/js/common/jquery-1.11.0.min.js?v=201511071729" type="text/javascript"></script>
+    <link href="/static/css/common/planCover.min.css?v=201511071729" rel="stylesheet" type="text/css"/>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="/static/css/common/newFrame.min.css?v=201511071729" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/common/font-awesome.css?v=201511071729" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/common/swiper.min.css?v=201511071729" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/common/planBook.min.css?v=201511071729" rel="stylesheet" type="text/css"/>
+    <script src="/static/js/common/zepto.min.js?v=201511071729"></script>
+    <style>
+        html,body{-webkit-touch-callout: none;}
+        .footer{
+            height: 121px;
+        }
+        /*产品详情头部导航页面*/
+        .top-float-header {
+            position: fixed;
+            z-index: 100;
+            background: #fff;
+            color: #1c1c1c;
+            box-shadow: 0 0 1px rgba(213, 213, 213, 0.75);
+            height: 44px;
+            width: 100%;
+            /*max-width: 640px;*/
+            top: 0;
+            margin: 0 auto;
+        }
+        .top-float-header h1 {
+            height: 43px;
+            line-height: 43px;
+            font-weight: 400;
+            text-align: center;
+            /*text-indent: -20px;*/
+            margin: 0;
+            font-size: 16px;
+            border-bottom: 1px solid #e1e1e1;
+            width: 100%;
+            margin: 0 auto;
+            word-break: keep-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 100px 0 40px;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        .top-float-header .left-back-btn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            background: url("http://media.winbaoxian.com/static/images/sales/icon_left.png?v=150602") center no-repeat;
+            background-size: 8px;
+        }
+        .top-shart-link {
+            width: 100px;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            top: 2px;
+            display: block;
+            text-align: center;
+            background: #fff;
+        }
+        .top-shart-link a {
+            width: 35px;
+            height: 40px;
+
+            background: url("http://media.winbaoxian.com/static/images/common/top-icon-blue.png?v=150602") top center no-repeat;
+
+            background-size: 65px;
+            margin-top: 6px;
+            line-height: 20px;
+            font-size: 12px;
+            display: inline-block;
+            text-align: center;
+            float: left;
+            color: #545454;
+        }
+        .top-shart-link .collect-link {
+            margin-left: 18px;
+            background-position: 4px 0;
+        }
+        .top-shart-link .collect-link.active {
+            background: url("http://media.winbaoxian.com/static/images/common/top-icon-blue-2.png") no-repeat;
+            background-size: 65px;
+            background-position: 4px 0;
+        }
+        .top-shart-link .share-link {
+            background-position: -30px 1px;
+        }
+        .header-float-interval {
+            width: 100%;
+            display: block;
+            height: 44px;
+        }
+        /*收藏提示按钮 begin*/
+        .collect-tip{
+            width: 150px;
+            height: 100px;
+            background-color: rgba(0,0,0,.5);
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            color: #fff;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin:-50px 0 0 -75px;
+            display: none;
+            -webkit-transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            -o-transition: all .5s ease;
+            -ms-transition: all .5s ease;
+            transition: all .5s ease;
+            z-index: 9999;
+        }
+        .collect-tip.show{
+            display: block;
+            background-color: rgba(0,0,0,.4);
+        }
+        .collect-success{
+            width: 80px;
+            height: 100px;
+            margin: 0px auto;
+            padding: 0;
+            position: relative;
+            box-sizing: content-box;
+        }
+        .sa-tip {
+            width: 20px;
+            left: 18px;
+            top: 41px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            height: 5px;
+            background-color: #dee2e4;
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 2;
+        }
+        .sa-long {
+            width: 40px;
+            right: 14px;
+            top: 33px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            height: 5px;
+            background-color: #dee2e4;
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 2;
+        }
+        .text-msgTip{
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        /*收藏提示按钮 end*/
+    </style>
+</head>
+<body>
+<div id="coverBox">
+    <div class="coverTitleBox">
+        <p class="coverTitle"></p>
+        <p class="coverTitle1"></p>
+        <p class="coverTitle2"></p>
+        <p class="coverTitle3"></p>
+        <p class="coverTitle4"></p>
+        <p class="coverTitle5"></p>
+        <p class="coverTitle6"></p>
+        <p class="coverTitle7"></p>
+    </div>
+    <div class="coverBg">
+        <p class="coverBgLine"></p>
+        <p class="coverBgLine1"></p>
+    </div>
+    <div class="coverName">敬呈 | <b class="J_cname D_cname"></b><b class="J_csex D_csex"></b></div>
+    <div class="coverLine">
+        <p></p>
+    </div>
+</div>
+<input type="hidden" value="61+15，高性价终身重疾" id="insuranceType_desc">
+<input type="hidden" value="常青树2015" id="insuranceType_name">
+<!--头部 header start-->
+<header class="top-float-header">
+    <span class="left-back-btn" id="back-btn"></span>
+    <h1>常青树保险产品计划书演示</h1>
+    <div class="top-shart-link">
+        <a class="collect-link " href="javascript:;"></a>
+        <a class="share-link" href="javascript:oneKeyShare()"></a>
+    </div>
+</header>
+<div class="header-float-interval"></div>
+<!--头部 header end-->
+
+<input type="hidden" value="http://media.winbaoxian.com/static/images/planBook/companylogo/logo_huaxia.png" id="insuranceType_logo"/>
+<header class="header">
+    <ul id="navBar" class="navBar">
+        <li>险种解读</li>
+        <li>保险理念</li>
+        <li>公司介绍</li>
+    </ul>
+    <p class="navBg"></p>
+</header>
+<article id="container" class="swiper-container swiper-container-horizontal">
+    <div class="swiper-wrapper">
+        <section class="swiper-slide">
+            <div class="content-slide">
+                <style type="text/css">
+                    #plan{background-image:url(http://media.winbaoxian.com/static/images/n3/hx_changqingshu_bg.png)}
+                    .logo{background-image:url(http://media.winbaoxian.com/static/images/n3/huaxia/huaxLogo.png);width:33%}
+                    .blockDiv,.managerContact,.footer{background-color:#bae29d}
+                    .planRuleText dt,.planRuleText dd,.formPartCont li,.blockInDiv{background-color: #fff}
+                    .rulePop{background:none !important}
+                    .rulePop a{background-color: #79aa56!important;color:#fff}
+                    .blockInTitle{border-bottom:#bae29d 1px solid}
+                    .blockInTitle i{background-color: #bae29d;color:#fff}
+                    .planLine{background-color: #79aa56}
+                    .planIco{color: #79aa56; background-color: #bae29d}
+                    .kingPer p {background: #79aa56;color: #fff}
+                    .kingPer b {background: #fff}
+                    .kingPer .active {background: #edcd96;color: #ff9}
+                    .plus, .minus {color: #d37f4a}
+                    .managerPhoto{border:#bae29d 1px solid}
+                    .managerIco{background:#fff;color:#bae29d}
+                    .footer{color:#fff}
+                    .planRuleText dd b{color:#f00}
+                </style>
+                <article id="plan">
+                    <header class="plan-header">
+                        <h1 id="logo" class="logo"><span><img src="http://media.winbaoxian.com/static/images/n3/huaxia/huaxLogoL.png"></span></h1>
+                    </header>
+                    <article>
+                        <section class="blockDiv"><i class="tu"><img src="http://media.winbaoxian.com/static/images/n3/lightGreen.png"/></i>
+                            <ul class="formPartCont">
+                                <li>
+                                    <label>年龄：<i class="J_age"></i></label>
+                                    <label>性别：<i class="J_sex"></i></label>
+                                </li>
+                                <li>
+                                    <label>保险期间：<i class="J_duration"></i></label>
+                                    <label>保险金额：<i class="J_baoe">1</i></label>
+                                </li>
+                                <li>
+                                    <label>缴费期间：<i class="J_years"></i></label>
+                                    <label>年缴保费：<i class="J_baofei">1</i></label>
+                                </li>
+                            </ul>
+                        </section>
+                        <section class="blockDiv">
+                            <div class="planRule">
+                                <p class="planLine"></p><i class="planIco"><i class="fa fa-heart"></i></i>
+                                <dl class="planRuleText">
+                                    <dt>重疾保障终身享</dt>
+                                    <dd>终身拥有61种重大疾病保障<b class=J_baoe>1</b>元，确诊给付，行业领先，全面呵护更心安</dd><span class="rulePop"><a id="sick1">病种详情</a><a id="rule1">条款注解</a></span>
+                                </dl>
+                            </div>
+                            <div class="planRule">
+                                <p class="planLine"></p><i class="planIco"><i class="fa fa-heart"></i></i>
+                                <dl class="planRuleText">
+                                    <dt>轻症保障有关爱</dt>
+                                    <dd>针对15种轻症疾病，提供<b class=J_baoe>0.2</b>元保障，确诊给付，关爱更全面</dd><span class="rulePop"><a id="sick2">病种详情</a><a id="rule2">条款注解</a></span>
+                                </dl>
+                            </div>
+                            <div class="planRule">
+                                <p class="planLine"></p><i class="planIco"><i class="fa fa-heart"></i></i>
+                                <dl class="planRuleText">
+                                    <dt>疾病期末更保障</dt>
+                                    <dd>若因其他疾病且医院确诊终末期阶段，一次性给付<b class=J_baoe>1</b>元</dd><span class="rulePop"><a id="rule3">条款注解</a></span>
+                                </dl>
+                            </div>
+                            <div class="planRule">
+                                <p class="planLine"></p><i class="planIco"><i class="fa fa-heart"></i></i>
+                                <dl class="planRuleText">
+                                    <dt>身价全残有保障</dt>
+                                    <dd>终身拥有身价与全残保障<b class=J_baoe>1</b>元，彰显身价</dd><span class="rulePop"><a id="rule4">条款注解</a></span>
+                                </dl>
+                            </div>
+                            <div class="planRule">
+                                <p class="planLine"></p><i class="planIco"><i class="fa fa-heart"></i></i>
+                                <dl class="planRuleText">
+                                    <dt>轻症疾病免保费</dt>
+                                    <dd>若罹患轻症疾病，可免交之后各期保费，人性关爱看得见</dd><span class="rulePop"><a id="rule5">条款注解</a></span>
+                                </dl>
+                            </div>
+                        </section>
+                        <div class="blockDiv">
+                            <p class="danTipTitle"><i class="fa fa-exclamation-circle"></i> 风险提示</p>
+                            <p class="danTipTxt">投保人在保单犹豫期后解除合同会遭受一定损失。本计划书演示数据仅供参考，具体保单利益请以保单合同为准。</p>
+                        </div>
+                        <section class="visitCard" >
+                            <p class="visitPhoto"><a href="" class="J_cardLink_" style="color:#fff"><i>查看名片</i></a><img class="J_visitPhoto" style="border-radius:10px"/></p>
+                            <p class="visitPerson"><span class="name J_salesManName"></span><span class="position J_position"></span><span class="company J_company"></span></p>
+                            <p class="visitMessage" id="card_message">
+                                <i class="fa fa-phone"></i> <span class="J_mobile"></span><br>
+                                <span><i class="fa fa-map-marker"></i>&nbsp; <span class="address J_address"></span></span>
+
+                            </p>
+                            <a href="" class="J_telOut telOut"></a>
+                        </section>
+                        <script>
+                            (function(){
+                                var obj=document.getElementsByTagName("i");
+                                var c='';
+                                for(var i= 0,j=obj.length;i<j;i++){
+                                    if(obj[i].className=='tu'){
+                                        c=obj[i].children[0].src;
+                                        c= c.substr(c.lastIndexOf('/')+1);
+                                    }
+                                }
+                                if(c.search(/blue/i)>0){
+                                    $(".visitCard")[0].className+=' cardBlue';
+                                }else if(c.search(/green/i)>0){
+                                    $(".visitCard")[0].className+=' cardGreen';
+                                }else if(c.search(/ellow/i)>0){
+                                    $(".visitCard")[0].className+=' cardYellow';
+                                }else if(c.search(/red/i)>0){
+                                    $(".visitCard")[0].className+=' cardRed';
+                                }
+                            })();
+
+                        </script></article>
+                    <footer class="footer">
+                        <p class="downLine">点击下载，制作计划书<i class="cLogo"><img src="http://media.winbaoxian.com/static/images/n3/cLogo.png" width="100%"></i><i class="cDir"><img src="http://media.winbaoxian.com/static/images/n3/dir.png" width="100%"></i></p>
+                        <p class="commonText">温馨提示：以上演示说明为本平台对上述产品的理解便于保险从业人员学习、交流，演示数据仅供参考，请以实际为准。</p>
+                    </footer>
+                </article>
+            </div>
+        </section>
+        <section class="swiper-slide"></section>
+        <section class="swiper-slide"></section>
+    </div>
+</article>
+<div class="loading-gif"><span></span></div>
+<div id="pop" class="popBox">
+    <div class="popContent"></div>
+    <div id="popBg" class="popBg"></div>
+</div>
+<script src="/static/js/common/swiper.min.js?v=201511071729"></script>
+<script src="/static/js/common/pageload-2.0.min.js?v=201511071729"></script>
+<script src="/static/js/common/sea.min.js?v=201511071729"></script>
+<script type="text/javascript">
+    //page data
+    var popBtnId=["rule1","rule2","rule3","rule4","rule5","sick1","sick2"];
+    var popUrl="/static/files/hx_changqingshu";
+    var movieTemp="before";//产品特色依赖js版本
+    var pageUrl = ["/planBook/about/n3/jiankang", "/planBook/about/n3/huaxia_about"];
+    var dataArr = [], starAge = 0;
+    var weixinPage=0;//是否现实菜单
+    var data = {"address":"暂未填写","age":30,"baoe":{"main":452284},"baofei":{"main":10000},"businessCard":{"company":"新华保险","more":"/invite?u=11212300&nw=1","name":"彭鹏","nameCard":"/card/shared/eecea9af78514b45ad4ba2fe93e0c276?nw=1","photo":"http://media.winbaoxian.com/static/images/exam/head_top.png","telephone":"13810800881"},"cardLink":"/card/shared/eecea9af78514b45ad4ba2fe93e0c276?nw=1","cname":"张三","company":"新华人寿保险股份有限公司","csex":"先生","duration":"终身","extInfo":{},"ideaUrl":"/planBook/about/n3/tongyong","insurance":10000,"insureAmount":452284,"isChooseZJ":0,"mobile":13810800881,"position":"客户经理","salesManName":"彭鹏","salesManSex":1,"sex":"男","userPhoto":"http://media.winbaoxian.com/static/images/exam/head_top.png","years":"20年"}</script>
+<script type="text/javascript">
+    //判断是否显示菜单 如果显示则加载滑动框架
+    setFrame(weixinPage,'header','container');
+
+    //plan book script
+    if(popBtnId!=undefined || popBtnId.length!=0){
+        seajs.use("/static/js/common/Pop-2.0.min",function(it){
+            showId(popBtnId);
+            function showId(arr){
+                var objs=[];
+                for(var i=0,j=arr.length;i<j;i++){
+                    objs[i]=_$(arr[i]);
+                }
+                for(var i=0,j=objs.length;i<j;i++){
+                    objs[i].onclick=function(){
+                        it.show('pop',popUrl,this.id);
+                    }
+                }
+            }
+        })
+    }
+    setTimeout(function(){shineLogo("logo");},50);
+    setValue(data);
+</script>
+<!--收藏提示 start-->
+<div class="collect-tip">
+    <div class="collect-success">
+        <span class="sa-tip"></span>
+        <span class="sa-long"></span>
+        <span class="text-msgTip">收藏成功</span>
+        <input type="hidden" id="favObjId" value="50a1b655622e4017a55f08aead0c87fc079"/>
+    </div>
+</div>
+<!--收藏提示 end-->
+</body>
+<script src="/static/js/common/app-bridge-addon.js?v=201511071729"></script>
+<script>
+    //plan book cover
+    (function(){
+        setTimeout(function(){
+            if($("#coverBox")[0]==undefined){
+                return
+            }
+            $("#coverBox").css('background','none');
+        },2000);
+        setTimeout(function(){
+            if($("#coverBox")[0]==undefined){
+                return
+            }
+            document.body.removeChild($("#coverBox")[0])
+        },4000);
+    })()
+    $("#coverBox").click(function() {
+        document.body.removeChild(this);
+    })
+</script>
+<script>
+    $(function () {
+        $(".downLine").hide();
+        if(navigator.userAgent.indexOf("AppleApp")==-1&&navigator.userAgent.indexOf("AndroidApp")==-1){
+            $(".top-float-header").hide();
+            $(".header-float-interval").hide();
+            $(".downLine").show();
+            $("body").css("background-position","0 0");
+            $(".header").css("top","0");
+            //$('#content').css('height',bodyHeight-objCont.offsetTop/2);
+        }
+        if (/(iPad|iPod)/i.test(navigator.userAgent)) {
+            $(".share-link").hide();
+            $(".top-shart-link").css("width","70px");
+        }
+
+        if (!window.appBridge) {
+            return;
+        }
+        // 在原生APP中隐藏顶部导航栏
+        if (appBridge.checkAppFeature('APP_VIEW')) {
+            $('.top-float-header, .header-float-interval').hide();
+            $('#header, header.header').css({top:0});
+        }
+        appBridge.notifyShareInfo({
+            title: $("#shareTitle").size() > 0 ?  $("#shareTitle").val() : '常青树保险产品计划书演示',
+            content:'彭鹏为您设计的专属保险计划书，请查阅！保险——让生活更美好！',
+            shareUrl:'http://app.winbaoxian.com/planBook/planBookResult?id=50a1b655622e4017a55f08aead0c87fc079&nw=1',
+            imgUrl: $('#insuranceType_logo').val()
+        });
+        appBridge.notifyFavouriteInfo({
+            planbookId: window.location.search.split(/id=|&/)[1],
+            isFavourite:
+                    false
+        });
+    });
+    $(".downLine").click(function(){
+        window.location.href="http://m.winbaoxian.com";
+    });
+    /*收藏提示 start*/
+    $(".collect-link").on("click",function(event){
+
+        event.stopPropagation();
+        if ($(this).hasClass("active")) {
+            removeFavourite();
+
+        }else{
+            addFavourite();
+
+        }
+        return false;
+
+    });
+    /*收藏提示 end*/
+
+    $("#back-btn").click(function () {
+        goBack();
+    });
+
+    //APP分享到微信端的再次转发
+    var url_logo = $("input#insuranceType_logo").val();
+    $('<div style="display:none">'+
+            '<img src="' + url_logo + '" />' +
+            '</div> ').insertAfter("input#insuranceType_logo");
+
+    function goBack(){
+        if($(".return-url").length>0){
+            window.location.href=$(".return-url").val();
+        }else{
+            history.go(-1);
+        }
+    }
+
+    function addFavourite(){
+        var args = window.location.search.split(/id=|&/);
+        $.ajax({
+            url : "/favourite/ajaxAdd",
+            type : "POST",
+            data : {
+                "targetId" :args[1]
+            },
+            success : function(result) {
+                if(result.success==true){
+                    //$("#favObjId").val(result.data);
+                    $(".collect-link").addClass("active");
+                    $(".text-msgTip").html("收藏成功");
+                    $(".collect-tip").addClass("show");
+                    setTimeout(function(){
+                        $('.collect-tip').removeClass('show');
+                    },1500);
+                }
+            },
+            error : function(e) {
+                $.popLayer("网络异常");
+            }
+        });
+    }
+
+    function removeFavourite(){
+        $.ajax({
+            url : "/favourite/obj/ajaxRemove",
+            type : "POST",
+            data : {
+                "objId" :$("#favObjId").val()
+            },
+            success : function(result) {
+                if(result.success==true){
+                    $(".text-msgTip").html("取消收藏");
+                    $(".collect-tip").addClass("show");
+                    $(".collect-link").removeClass("active");
+                    setTimeout(function(){
+                        $('.collect-tip').removeClass('show');
+                    },1500);
+                }
+            },
+            error : function(e) {
+                $.popLayer("网络异常");
+            }
+        });
+    }
+
+    function oneKeyShare(){
+        if (window.appBridge && appBridge.share) {
+            appBridge.share({
+                title: $("#shareTitle").size() > 0 ?  $("#shareTitle").val() : '常青树保险产品计划书演示',
+                desc: '新华彭鹏为您设计的专属保险计划书，请查阅！保险——让生活更美好！',
+                link: 'http://app.winbaoxian.com/planBook/planBookResult?id=50a1b655622e4017a55f08aead0c87fc079&nw=1',
+                imgUrl: $('#insuranceType_logo').val()
+            });
+        }
+    }
+
+    function appBack(){
+        goBack();
+    }
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?59c99e4444d9fb864780844a90b61aea";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>

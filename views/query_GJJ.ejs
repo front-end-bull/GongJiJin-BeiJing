@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加账号</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<link rel="stylesheet" href="/static/css/weui.min.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	<style>
+        html{
+            font-size: 100px;
+        }
+
+        @media screen and (max-device-width:320px){
+            html{
+                font-size: 85.3px;
+            }
+        }
+
+        @media screen and (min-device-width:414px){
+            html{
+                font-size: 100px;
+            }
+        }
+
+        body{
+            font-size: 0.16rem;
+            background: #eeeeee;
+        }
+        *{  
+            padding: 0;
+            margin: 0;
+            line-height: 1;
+            box-sizing:border-box;
+        }
+
+        .clearfix 
+        { 
+            zoom: 1; 
+        } 
+        .clearfix:before, .clearfix:after 
+        { 
+            display: table; 
+            line-height: 0; 
+            content: ""; 
+        } 
+        .clearfix:after 
+        { 
+            clear: both; 
+        } 
+
+		.weui_label{
+			width: 4em;
+		}
+		.weui_select{
+			height: 1.41176471em;
+		}
+
+        .city{
+            background-color:white;
+            border-top:1px solid #ddd;
+            border-bottom:1px solid #ddd;
+            margin-top:0.2rem;
+            margin-bottom: 0.2rem;  
+        }
+        
+        .city div{
+            float: left;
+            line-height: 0.45rem;
+        }
+
+        .city .left{
+            width: 33%;
+            padding-left: 0.16rem;
+            color: #848484;
+        }
+        
+        .city .middle{
+            width: 47%;
+        }
+
+        .city .right{
+            width: 20%;
+            text-align: center;
+            color:#b0b0b0;
+        }
+
+        .row{
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .row>div{
+            float: left;
+            line-height: 0.45rem;
+        }
+
+        .row .left{
+            width: 33%;
+            padding-left: 0.16rem;
+            position: relative;
+            color:#848484;
+        }
+        
+        .row .left span{
+            position: absolute;
+            left: 1rem;
+            top: 0.1rem;
+            /*transform:rotate(90deg);*/
+            color: #b0b0b0;
+            /*color:#848484;*/
+        }
+
+        .row .right{
+            width: 67%;
+            padding-right: 0.05rem;
+        }
+
+        .row>.right>.left{
+            width: 70%;
+            float: left;
+            line-height: 0.45rem;
+            padding-left: 0;
+        }
+
+        .row>.right>.right{
+            width: 30%;
+            float: left;
+            height: 0.45rem;
+            /*background-image: url('/static/images/vcode.jpg');
+            background-size: contain;
+            background-position: center; 
+            background-repeat: no-repeat;*/
+        }
+
+        .row>.right>.right>img{
+            display: block;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -30px;
+        }
+
+        .weui_btn{
+            padding-left: 0.14rem;
+            padding-right: 0.14rem;
+            font-size: 0.18rem;
+            line-height: 2.33333333;
+            background-color: #999;
+            /*background-color: #5d94fb;*/
+        }
+
+        .prompt{
+            /*height: 0.37rem;*/
+            font-size: 0.14rem;
+            background-color: #5d94fb;
+            color: white;
+            line-height: 0.37rem;
+            padding-left: 0.16rem;
+        }
+
+        .agree{
+            padding-top: 0.2rem;
+            font-size: 0.14rem;
+            color: #848484;
+            padding-left: 0.16rem;
+        }
+	</style>
+</head>
+<body>
+    <div class="prompt">如何获取公积金账号和查询密码？</div>
+    <input type="hidden" value="<%=jsessionid %>" id="jsessionid">
+    <!-- <img src="<%=image %>" alt=""> -->
+    <a href="/select_city/<%=jsessionid %>" style="color:black;">
+        <div class="city clearfix">
+            <div class="left">公积金中心
+                   
+            </div>
+            <div class="middle">
+                 <% if(typeof label != 'undefined' && label){ %>
+                        <%=label%>
+                    <% } %> 
+            </div>
+            <div class="right">></div>
+        </div>
+    </a>
+    
+    <div class="row clearfix">
+        <div class="left clearfix">
+            <select name="" id="type" class="weui_select" style="padding-left:0;padding-right:0;color:#848484;font-weight:100;" onchange="changeType()">
+                    <option value="1">联名卡号️</option>
+                    <option value="2">身份证</option>
+                    <option value="3">军官证</option>
+                    <option value="4">护照</option>
+                    <option value="5">个人登记号</option>
+             </select>
+             <span><i class="icon-sort-down"></i></span>
+        </div>
+        <div class="right">
+            <input class="weui_input" type="number" placeholder="请填写您的联名卡号" id="type_name" value="6225880173338147" />
+        </div>
+    </div>
+    
+
+    <div class="row clearfix">
+        <div class="left">
+            查询密码
+        </div>
+        <div class="right">
+             <input class="weui_input" type="password" placeholder="默认身份证后四位数字加两个0" id="password" value="001500" />
+        </div>
+    </div>
+
+     <div class="row clearfix">
+        <div class="left">
+            验证码
+        </div>
+        <div class="right clearfix">
+            <div class="left">
+                <input class="weui_input"  placeholder="请输入右边的验证码" id="gjjcxjjmyhpppp"/>
+            </div>
+            <div class="right">
+                <img src="<%=image %>" alt="">
+            </div>
+             
+        </div>
+    </div>
+    
+
+
+  
+	<div class="agree"><input type="checkbox" id="agree" onclick="agree()">&nbsp;同意《用户解析协议》</div>
+
+	<div class="bd spacing" style="padding:0.16rem;" >
+        <a onclick="add()" class="weui_btn" id="add">添加公积金</a>
+        <!-- <a href="/GJJ_main" class="weui_btn weui_btn_primary " id="add">添加公积金</a> -->
+        <!-- <a href="javascript:;" class="weui_btn weui_btn_disabled weui_btn_primary">按钮</a> -->
+    </div>
+
+    <script type="text/javascript" src="http://7xq93s.com2.z0.glb.qiniucdn.com/jquery.min.2.1.4.js"></script>
+    <script src="/static/js/common/layer/layer.js" type="text/javascript"></script>
+
+    <script src="/static/js/GJJ/inner.js"></script>
+    <script>
+
+
+        $('#agree').attr('checked',false)
+        $('#gjjcxjjmyhpppp').val('')
+
+        var isChecked = false;
+        var isOnclick = true;
+        //下拉框
+        function changeType(){
+            var select =  $('#type')
+            var val = select.val()
+            var label = '请输入你的'+$('#type').find("option:selected").text()
+            if(val==2||val==3||val==4){
+                label+='号'
+            }
+            $('#type_name').attr('placeholder',label)
+        }
+
+        function agree(){
+            isChecked = !isChecked
+            if(isChecked){
+                $('.weui_btn').css({'background-color':'#5d94fb'})
+            }else{
+                $('.weui_btn').css({'background-color':'#999'})
+            }
+        }
+
+
+        function add(){
+            if(!isOnclick){
+                return
+            }
+
+            if(!isChecked){
+                return
+            }
+            if($('#type_name').val()==""||$('#type_name').val()==undefined){
+                layer.msg('卡号不能为空')
+                return
+            }
+            if($('#password').val()==""||$('#password').val()==undefined){
+                layer.msg('密码不能为空')
+                return
+            }
+            if($('#gjjcxjjmyhpppp').val()==""||$('#gjjcxjjmyhpppp').val()==undefined){
+                layer.msg('验证码不能为空')
+                return
+            }
+            
+            isOnclick = false
+            // layer.msg('正在为您拼命加载中，请稍候')
+            
+
+            //用户名
+            var bh = $('#type_name').val()
+            // var bh = '6225880173338147'
+            bh = strEncode(bh,"pdcss123", "css11q1a", "co1qacq11")
+
+            //密码
+            var mm = $('#password').val()
+            // var mm = '001500'
+            mm = strEncode(mm,"pdcss123", "css11q1a", "co1qacq11")
+
+            //jsessionid
+            var jsessionid = $('#jsessionid').val()
+
+            var lb = 5
+
+            var lk = 1
+
+            //验证码
+            var gjjcxjjmyhpppp = $('#gjjcxjjmyhpppp').val()
+
+            // console.log(bh)
+            // console.log(mm)
+           
+            // window.location = "http://localhost:3000/GJJ_main?mm="+mm+"&bh"+bh+"&jsessionid"+jsessionid+"&lb"+lb+"&lk"+lk+"&gjjcxjjmyhpppp"+gjjcxjjmyhpppp
+            window.location = "http://192.168.0.109:3000/GJJ_main/"+mm+"/"+bh+"/"+jsessionid+"/"+lb+"/"+lk+"/"+gjjcxjjmyhpppp
+            // var formData = {
+            //     mm:mm,
+            //     bh:bh,
+            //     jsessionid:jsessionid,
+            //     lb:lb,
+            //     lk:lk,
+            //     gjjcxjjmyhpppp:gjjcxjjmyhpppp
+            // }
+
+            // $.ajax({
+            //     data: formData,
+            //     type: "post",
+            //     // url: 'http://localhost:3000/save_news',
+            //     url: 'http://localhost:3000/GJJ_main',
+            //     dataType: 'json',
+            //     cache: false,
+            //     timeout: 5000,
+            //     success: function(data){
+            //         // var data = $.parseJSON(data);
+            //         // alert(data.message);
+            //         // console.log(data)
+
+            //         // layer.msg('保存成功!');
+            //         // $('#title').val('')
+            //         // $('#short_content').val('')
+            //         // $('#content').val('')
+            //         // $('#iconurl').val('')
+            //         // $('#time').val('')
+
+            //     }
+            //     ,
+            //     error: function(jqXHR, textStatus, errorThrown){
+            //         // layer.msg('保存失败!');  
+            //     }
+            // });
+
+        }
+
+
+    </script>
+</body>
+</html>

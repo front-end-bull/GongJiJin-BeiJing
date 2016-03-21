@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>资讯管理</title>
+
+    <link href="/static/css/common/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/addInfo.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/animate.css" rel="stylesheet" type="text/css"/>
+    
+
+    <script src="/static/js/common/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/common/layer/layer.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/static/js/My97DatePicker/WdatePicker.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container animated slideInRight">
+        <div class="row">
+             <h1>新增新闻资讯</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-2 title">标题</div>
+            <div class="col-xs-6"><input class="form-control" type="text" id="title"></div>
+            <div class="col-xs-2"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-2 title">类型</div>
+            <div class="col-xs-6">
+                <select name="" id="type" class="form-control">
+                    <option value="1">客户</option>
+                    <option value="2">自己</option>
+                </select>
+            </div>
+            <div class="col-xs-2"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-2 title">发布时间</div>
+            <div class="col-xs-6"><input type="text" id="time" class="form-control" onclick="WdatePicker()"></div>
+            <div class="col-xs-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-2 title">logo地址</div>
+            <div class="col-xs-6"><input class="form-control" type="text" id="iconurl"></div>
+            <div class="col-xs-2"></div>
+        </div>
+
+         <div class="row">
+            <div class="col-xs-2 title">一句话描述</div>
+            <div class="col-xs-6"><input class="form-control" type="text" id="short_content"></div>
+            <div class="col-xs-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-2 title">html</div>
+            <div class="col-xs-6"><textarea name="" id="content" class="form-control" style="height:200px"></textarea></div>
+            <div class="col-xs-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-2"></div> 
+            <div class="col-xs-3">
+                <a href="/infoManage"><button class="btn btn-warning center">返回</button></a>
+            </div> 
+            <div class="col-xs-3">
+                <button class="btn btn-success center" onclick="save()">保存</button>
+            </div> 
+            <div class="col-xs-2"></div> 
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        function save(){
+
+          var title = $('#title').val()
+          var short_content = $('#short_content').val()
+          var content = $('#content').val()
+          var iconurl = $('#iconurl').val()
+          var type = $('#type').val()
+          var time = $('#time').val()
+
+          if(title==undefined||title==''){
+            layer.tips('标题不能为空，请输入!', '#title')
+            return
+          }
+
+          if(time==undefined||time==''){
+            layer.tips('发布时间不能为空，请选择!', '#time')
+            return
+          }
+
+          if(iconurl==undefined||iconurl==''){
+            layer.tips('logo地址不能为空，请输入!', '#iconurl')
+            return
+          }
+
+          if(short_content==undefined||short_content==''){
+            layer.tips('简短描述不能为空，请输入!', '#short_content')
+            return
+          }
+
+          if(content==undefined||content==''){
+            layer.tips('html代码不能为空，请输入!', '#content')
+            return
+          }
+
+          time = Date.parse(new Date(time))/1000
+
+          var saveData={
+            title:title,
+            short_content:short_content,
+            content:content,
+            iconurl:iconurl,
+            type:type,
+            time:time
+          }
+
+           $.ajax({
+                data: saveData,
+                type: "post",
+                url: 'http://182.254.212.33:3000/save_news',
+                dataType: 'json',
+                cache: false,
+                timeout: 5000,
+                success: function(data){
+                    // var data = $.parseJSON(data);
+                    // alert(data.message);
+                    // console.log(data)
+                    layer.msg('保存成功!');
+                    $('#title').val('')
+                    $('#short_content').val('')
+                    $('#content').val('')
+                    $('#iconurl').val('')
+                    $('#time').val('')
+                }
+                ,
+                error: function(jqXHR, textStatus, errorThrown){
+                    layer.msg('保存失败!');  
+                }
+            });
+
+
+        }
+    </script>
+
+</body>
+
+</html>

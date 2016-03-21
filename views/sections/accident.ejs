@@ -1,0 +1,15 @@
+<section class="clearfix accident">
+	<%- include('_section_header', {section_name: "意外伤害",a_id:type,Ttitle:tiaokuan_title,content:tiaokuan_content,url:tiaokuan_left_click,need_tiaokuan:false}) %>
+	
+	<% _.each(assures, function(a) { %>
+		<div class="block clearfix">
+			<div class="left">
+				<img src="<%= a.logourl%>" alt="">
+			</div>
+			<div class="right">
+				<dt><%= a.title%></dt>
+				<dd><%- a.text%></dd>
+			</div>
+		</div>
+	<% }); %> 
+</section>

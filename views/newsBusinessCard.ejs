@@ -1,0 +1,29 @@
+<section class="contact clearfix">
+  <div class="left">
+      <img src="<%= avatar %>" alt="">
+      <!-- <img src="/static/images/foreign_woman.png" alt=""> -->
+  </div>
+  <div class="right">
+    <dt>
+      <%= username %>
+      <!-- <img src="/static/images/zhongguopingan.png" alt=""> -->
+    </dt>
+   
+    <img class="left" src="/static/images/double_quotation_left.png" alt="">
+     <% if(typeof content != 'undefined' && content){ %>
+        <dd><%= content %></dd>
+    <% }else{ %>
+        <dd>优秀的私人保险代理师，为您的美好生活保驾护航</dd>
+    <% } %> 
+     
+    <img class="right" src="/static/images/double_quotation_right.png" alt="">
+  </div>
+  <div class="buttons clearfix">
+    <a href="tel:<%= phonenumber %>" style="text-decoration:none;">
+      <div class="phone">
+        <img src="/static/images/phone-black.png" alt="">
+        <span><%=phonenumber %></span>
+      </div>
+    </a>
+  </div>
+</section>

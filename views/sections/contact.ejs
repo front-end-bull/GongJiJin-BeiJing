@@ -1,0 +1,72 @@
+<section class="contact clearfix">
+  <div class="left">
+      <img src="<%= logourl %>" alt="">
+      <!-- <img src="/static/images/foreign_woman.png" alt=""> -->
+  </div>
+  <div class="right">
+    <dt>
+      <%= username %>
+      <!-- <img src="/static/images/zhongguopingan.png" alt=""> -->
+    </dt>
+   
+    <img class="left" src="/static/images/double_quotation_left.png" alt="">
+    <!-- <dd>从业10年，一直全心全意为客户着想，为您谋求最大的利益。</dd> -->
+     <dd><%= desc %></dd>
+    <img class="right" src="/static/images/double_quotation_right.png" alt="">
+  </div>
+  <div class="buttons clearfix">
+    <!-- <a href="tel:<%= phone %>" style="text-decoration:none;">
+      <div class="phone"><img src="/static/images/phone-white.png" alt="">&nbsp;咨询</div>
+    </a> -->
+   <!--  <a href="weixin:<%= phone %>" style="text-decoration:none;">
+      <div class="weChart"><img src="/static/images/weChart-white.png" alt="">&nbsp;沟通</div>
+    </a> -->
+    <a href="javascript:void(0);" style="text-decoration:none;" class="loadBtn">
+      <div class="phone">
+        <img src="/static/images/phone-black.png" alt="">
+        <span><%=phoneFormat %></span>
+      </div>
+    </a>
+  </div>
+  <div style="visibility:hidden;width:0;" class="hrefPhone"><%=phone %></div>
+</section>
+<script>
+  function isWechat() {
+    var ua = navigator.userAgent.toLowerCase()
+    return ua.match(/MicroMessenger/i) == "micromessenger"
+  }
+  $(function() {
+    var w_downloadBtn = $('.loadBtn')
+    if (isWechat()) {         
+      w_downloadBtn.attr('href','tel:'+$('.class').html())
+    }
+  });
+</script>
+<!-- <section class="contact">
+  <div class="row no-margin" style="background-color:white;min-height:90px;">
+    <div class="col-xs-2" style="padding-left:30px;padding-right:0;">
+      <img style="width:50px;" src="<%= logourl %>" alt=""> 
+    </div>
+    <div class="col-xs-8" style="padding-left:0;">
+      <div class="row no-margin">
+        <div class="col-xs-3"><%= username %></div>
+        <div class="col-xs-7">TEL:<%= phone %></div>
+      </div>
+      <div class="row no-margin">
+        <div class="col-xs-10" style="font-size:14px;color:#a8a8a8;"><%= desc %></div>
+      </div>
+    </div>
+  </div>
+  <div  class="clearfix">
+    <button  class="btn btn-default" style="float:left;width:50%;">
+      <img src="/static/images/icon-phone.png" alt="" style="width:20px;"> 
+      <a href="tel:<%= phone %>" style="color:#0c98e8;text-decoration:none;">电话沟通</a>
+      </button>
+    <button  class="btn btn-default" style="float:left;width:50%;color:#0c98e8;">
+      <img src="/static/images/icon-weChart.png" alt="" style="width:20px;"> 
+      微信沟通
+    </button>
+  </div>
+</section>
+
+ -->

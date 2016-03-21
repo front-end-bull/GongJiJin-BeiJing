@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>邀请码</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://7xq93s.com2.z0.glb.qiniucdn.com/jquery.min.2.1.4.js"></script>
+    <script src="/static/js/sha1.js"></script>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        outline: none;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+     }
+     html{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+    }
+    body{
+      padding: 0;
+      margin:0;
+      background: #0c213e url('http://7xq93s.com2.z0.glb.qiniucdn.com/star-.png');
+      background-position:0;
+      width: 100%;
+      max-width: 768px;
+      /*overflow: hidden;*/
+    }
+    a { text-decoration: none; }
+    .top{
+    background-image: url('http://7xq93s.com2.z0.glb.qiniucdn.com/25.png');
+    background-position:0%;
+    background-size: 110%;
+    background-repeat: no-repeat;
+    width: 100%;
+    /*height: 400px;*/
+    height: 320px;
+    /*padding-left:20px;*/
+    /*background-origin: content-box;*/
+    }
+
+    .bottom{
+    background-image:url('http://7xq93s.com2.z0.glb.qiniucdn.com/%E6%A4%AD%E5%9C%86-.png');
+    background-size: 125%;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    z-index: -1;
+    }
+    .button{
+      display: block;
+      background-image: url('http://7xq93s.com2.z0.glb.qiniucdn.com/%E7%AB%8B%E5%8D%B3%E4%B8%8B%E8%BD%BD-.png');
+      background-size: 66%;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      width: 100%;
+      height: 120px;
+    }
+    .clearfix { 
+        zoom: 1; 
+    } 
+    .clearfix:before, .clearfix:after { 
+        display: table; 
+        line-height: 0; 
+        content: ""; 
+    } 
+    .clearfix:after { 
+        clear: both; 
+    } 
+    .left,.right{
+        font-size: 18px;
+        color: #fbdf1a;
+        line-height: 1.5;
+        font-weight: bolder;
+        text-align: left;
+        padding-top: 10px;
+        letter-spacing:0px;
+      }
+      .left{
+        float: left;
+        margin-left: 24px;
+      }
+      .right{
+        float: right;
+        margin-right: 24px;
+      }
+
+      .middle{
+        color: #fff;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.3;
+        text-align: center;
+        width: 100%;
+        z-index: 999;
+        position: relative;
+        top: -40px;
+      } 
+      
+
+      @media screen and (min-width:801px){
+        .top{
+          height: 650px;
+        }
+        .middle{
+          font-size: 42px;
+          position: relative;
+          top:-60px;
+        }
+        .bottom{
+          height: 300px;
+          position: static;
+        }
+        .button{
+          background-size: 50%;
+          height: 160px;
+        }
+        .left,.right{
+          font-size: 36px;
+        }
+      }
+
+
+      /*ipad*/
+      @media screen and (min-device-width:768px) and (max-device-width:800px){
+        .top{
+          height: 617px;
+        }
+        .middle{
+          font-size: 36px;
+          position: relative;
+          top:-76px;
+        }
+        .bottom{
+          height: 300px;
+        }
+        .button{
+          background-size: 50%;
+          height: 160px;
+        }
+        .left,.right{
+          font-size: 32px;
+        }
+        .left{
+        margin-left: 48px;
+        }
+        .right{
+          margin-right: 48px;
+        }
+      }
+      
+      /*Ipad Mini*/
+      @media screen and (min-device-width:600px) and (max-device-width:767px){
+        .top{
+          height: 500px;
+        }
+        .middle{
+          font-size: 32px;
+          position: relative;
+          top:-60px;
+        }
+        .bottom{
+          height: 236px;
+        }
+        .button{
+          background-size: 50%;
+          height: 140px;
+        }
+        .left,.right{
+          font-size: 26px;
+        }
+        .left{
+        margin-left: 48px;
+        }
+        .right{
+          margin-right: 48px;
+        }
+      }
+
+      /*iphone6plus*/
+      @media  screen and (min-device-width:414px) and (max-width: 599px) and (max-device-height:737px){
+          .top{
+            height: 400px;
+          }
+          .middle{
+            position: relative;
+            top:-50px;
+            font-size: 32px;
+          }
+          .left,.right{
+            font-size: 20px;
+            padding-top: 20px;
+            letter-spacing: 0;
+          }
+          .bottom{
+            height: 230px;
+          }
+          .button{
+            height: 120px;
+          }
+      }
+      /*非iphone6plus*/
+      @media  screen and (min-device-width:414px) and (max-width: 599px) and (min-device-height:737px){
+          .top{
+            height: 340px;
+          }
+          .middle{
+            position: relative;
+            top:-45px;
+            font-size: 26px;
+          }
+          .left,.right{
+            font-size: 18px;
+            /*padding-top: 20px;*/
+            letter-spacing: 0;
+          }
+          .left{
+            margin-left:12px;
+          }
+          .right{
+            margin-right:12px;
+          }
+          .bottom{
+            height: 200px;
+          }
+          .button{
+            height: 120px;
+          }
+      }
+      /*iphone6*/
+      @media screen and (min-device-width:330px) and (max-device-width:413px){
+        .top{
+          height: 380px;
+        }
+        .middle{
+          position: relative;
+          top:-57px;
+          font-size: 26px;
+        }
+        .left,.right{
+          font-size:16px;
+          /*font-size: 20px;*/
+          letter-spacing: 0;
+        }
+        
+        .bottom{
+          height: 200px;
+        }
+        .button{
+          height: 110px;
+        }
+      }
+      /*iphone5*/
+      @media screen and (max-device-width:320px){
+          .top{
+            height: 300px;
+          }
+          .middle{
+            top: -40px;
+            font-size: 26px;
+          }
+          .bottom{
+            height: 170px;
+          }
+          .button{
+            height: 90px;
+            background-size: 66%;
+          }
+          .left,.right{
+            font-size: 16px;
+            padding-top: 10;
+            letter-spacing: 0;
+          }
+      }
+    </style>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?dbf24fc8545d25030133fb13e67fd1a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+    $.ajax({
+          data: '',
+          type: "get",
+          url: 'http://182.254.212.33:3000/get_jsapi_ticket',
+          dataType: 'json',
+          cache: false,
+          timeout: 5000,
+          success: function(data){
+              var jsapi_ticket = data.jsapi_ticket
+              getWechart_api(jsapi_ticket)
+          }
+          ,
+          error: function(jqXHR, textStatus, errorThrown){
+              alert('error ' + textStatus + " " + errorThrown)
+          }
+      })
+
+    function getWechart_api(jsapi_ticket){
+        var timestamp=new Date().getTime()
+        console.log(timestamp)
+         var string1 = "jsapi_ticket="+jsapi_ticket+"&noncestr=wx506092ac36c5820e&timestamp="+timestamp+"&url=http://www.baoxianshenqi.cn/downloadApp.html";
+         var shaObj = new jsSHA("SHA-1", 'TEXT');
+          shaObj.update(string1);
+          var hash = shaObj.getHash("HEX");
+
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: 'wx506092ac36c5820e', // 必填，公众号的唯一标识
+          timestamp: timestamp, // 必填，生成签名的时间戳
+          nonceStr: 'wx506092ac36c5820e', // 必填，生成签名的随机串
+          signature: hash,// 必填，签名，见附录1
+          jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+
+        wx.ready(function(){
+
+          // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+          wx.onMenuShareTimeline({
+            title: '您有一份25元的话费未领取', // 分享标题
+            link: 'http://www.baoxianshenqi.cn/downloadApp.html', // 分享链接
+            imgUrl: 'http://7xq93s.com2.z0.glb.qiniucdn.com/%E5%B1%95%E7%A4%BA%E5%9B%BE.jpg', // 分享图标
+            success: function () { 
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () { 
+                // 用户取消分享后执行的回调函数
+            }
+          });
+          wx.onMenuShareAppMessage({
+            title: '您有一份25元的话费未领取', // 分享标题
+            desc: '下载-注册,轻松两步激活[保险神器]领取20元话费,使用邀请码再加5元', // 分享描述
+            link: 'http://www.baoxianshenqi.cn/downloadApp.html', // 分享链接
+            imgUrl: 'http://7xq93s.com2.z0.glb.qiniucdn.com/%E5%B1%95%E7%A4%BA%E5%9B%BE.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () { 
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () { 
+                // 用户取消分享后执行的回调函数
+            }
+          });
+        });
+  }
+  </script>
+</head>
+
+<body>
+    <div class="top">
+
+    </div>
+    
+    <div class="middle">
+      使用邀请码&nbsp;<span style="color:#e94917"><%=code%></span><br>
+      邀请同事各得&nbsp;<span style="color:#eaba1d">5</span>&nbsp;元
+    </div>
+
+    <div class="bottom">
+      <a href="javascript:;" class="loadBtn">
+        <div class="button"></div>
+      </a>
+      <div class="clearfix text">
+            <div class="left">保险费率随时计算<br>
+                 保险组合自动规划
+             </div>
+            
+            <div class="right">保险计划一键生成<br>
+                 保险资讯随时更新
+            </div>
+          </div>
+    </div>
+    <script type="text/javascript" src="http://7xq93s.com2.z0.glb.qiniucdn.com/jquery.min.2.1.4.js"></script>
+  <script type="text/javascript">
+    var DownloadUrls = {
+           // uIos: 'https://itunes.apple.com/cn/app/wei-yi-bao-xian-zhu-shou/id981360164',
+           uAndroid: 'http://7xpzcc.com2.z0.glb.qiniucdn.com/baoxianshenqi.2015.12.24.v2.apk',
+           uQQ: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.caiweilai.baoxianshenqi'
+       };
+
+       function isAndroid() {
+           return navigator.userAgent.indexOf("Android") > 0;
+       }
+
+       function isIos() {
+           return /iP(ad|hone|od)/.test(navigator.userAgent);
+       }
+
+       function isWechat() {
+           var ua = navigator.userAgent.toLowerCase();
+           return ua.match(/MicroMessenger/i) == "micromessenger";
+       }
+
+       function isQQ() {
+           var ua = navigator.userAgent.toLowerCase();
+           return ua.match(/QQ/i) == "qq";
+       }
+
+       $(function() {
+           var w_downloadBtn = $('.loadBtn');
+           if(isIos()){               
+             $('.button').css('background-image','url(http://7xq93s.com2.z0.glb.qiniucdn.com/%E7%AB%8B%E5%8D%B3%E4%B8%8B%E8%BD%BD-ios.png)')
+           }else if(isAndroid()&&isWechat()){ 
+            w_downloadBtn.attr('href',DownloadUrls.uQQ);
+           }else if(isAndroid()){            
+            w_downloadBtn.attr('href',DownloadUrls.uAndroid);
+           }
+       });
+       
+      
+    </script>
+</body>
+
+</html>

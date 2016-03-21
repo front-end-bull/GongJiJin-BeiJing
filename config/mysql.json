@@ -1,0 +1,12 @@
+{
+  "development": {
+    "host": "localhost",
+    "user": "root",
+    "password": "abcd1234"
+  },
+  "production": {
+    "host": "10.66.155.114",
+    "user": "root",
+    "password": "abcd1234"
+  }
+}
